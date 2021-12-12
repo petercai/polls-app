@@ -1,0 +1,34 @@
+###
+GET http://localhost:5000/api/polls
+
+<> 2021-12-12T143639.200.json
+
+###
+GET http://localhost:5000/api/user/me
+
+<> 2021-12-12T143706.401.json
+
+###
+POST http://localhost:5000/api/auth/signin
+
+
+###
+POST http://localhost:5000/api/auth/signin
+
+###
+GET http://localhost:5000/api/polls/{{pollId}}
+
+###
+GET http://localhost:5000/api/users/{{username}}
+
+###
+GET http://localhost:5000/api/users/{{username}}/votes
+
+###
+GET http://localhost:5000/api/users/{{username}}/polls
+
+###
+GET http://localhost:5000/api/users/{{username}}/polls
+
+###
+POST http://localhost:5000/api/auth/signup

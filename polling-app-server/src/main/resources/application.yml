@@ -1,0 +1,40 @@
+app:
+    jwtExpirationInMs: 604800000
+    jwtSecret: JWTSuperSecretKey
+logging:
+    level:
+        org.hibernate.SQL: DEBUG
+        org.apache.http.wire: DEBUG
+
+server:
+    compression:
+        enabled: true
+    port: 5000
+
+management:
+    endpoints:
+        web:
+            base-path: /management
+            exposure:
+                include: "env,info,configprops,mappings"
+        enabled-by-default: true
+    endpoint:
+        env:
+            sensitive: false
+            keys-to-sanitize:
+        configprops:
+            sensitive: false
+            keys-to-sanitize:
+        info:
+            enabled: true
+    info:
+        git:
+            mode: full
+    health:
+        circuitbreakers:
+            enabled: true
+
+spring:
+    jackson:
+        serialization:
+            WRITE_DATES_AS_TIMESTAMPS: false
