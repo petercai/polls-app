@@ -3,6 +3,7 @@ package com.example.polls.service;
 import com.example.polls.exception.BadRequestException;
 import com.example.polls.exception.ResourceNotFoundException;
 import com.example.polls.model.*;
+import com.example.polls.model.common.SequenceGenerator;
 import com.example.polls.payload.PagedResponse;
 import com.example.polls.payload.PollRequest;
 import com.example.polls.payload.PollResponse;
@@ -39,6 +40,9 @@ public class PollService {
 
     @Autowired
     private VoteRepository voteRepository;
+
+    @Autowired
+    SequenceGenerator sequenceGenerator;
 
     @Autowired
     private UserRepository userRepository;
@@ -157,6 +161,7 @@ public class PollService {
 
         poll.setExpirationDateTime(expirationDateTime);
 
+        poll.setId(sequenceGenerator.generate(Poll.SEQUENCE_NAME));
         return pollRepository.save(poll);
     }
 

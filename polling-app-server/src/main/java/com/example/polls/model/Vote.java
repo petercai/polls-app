@@ -1,61 +1,38 @@
 package com.example.polls.model;
 
 import com.example.polls.model.audit.DateAudit;
-import javax.persistence.*;
+import com.example.polls.model.common.IMongoModel;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "votes", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {
-                "poll_id",
-                "user_id"
-        })
-})
-public class Vote extends DateAudit {
+@Document(collection = "votes")
+@Data
+public class Vote extends DateAudit implements IMongoModel {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "vote_sequence";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "poll_id", nullable = false)
+
+    @DBRef
+    @Indexed
     private Poll poll;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "choice_id", nullable = false)
+    @DBRef
     private Choice choice;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @DBRef
+    @Indexed
     private User user;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Poll getPoll() {
-        return poll;
-    }
-
-    public void setPoll(Poll poll) {
-        this.poll = poll;
-    }
-
-    public Choice getChoice() {
-        return choice;
-    }
-
-    public void setChoice(Choice choice) {
-        this.choice = choice;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public String getSequenceName() {
+        return SEQUENCE_NAME;
     }
 }

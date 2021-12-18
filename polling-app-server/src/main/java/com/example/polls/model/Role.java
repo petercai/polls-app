@@ -1,45 +1,29 @@
 package com.example.polls.model;
 
-import org.hibernate.annotations.NaturalId;
-import javax.persistence.*;
+import com.example.polls.model.common.IMongoModel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * Created by rajeevkumarsingh on 01/08/17.
- */
-@Entity
-@Table(name = "roles")
-public class Role {
+
+@Document(collection = "roles")
+@Data
+@NoArgsConstructor
+public class Role implements IMongoModel {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "role_sequence";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    @NaturalId
-    @Column(length = 60)
     private RoleName name;
 
-    public Role() {
 
+    @Override
+    public String getSequenceName() {
+        return SEQUENCE_NAME;
     }
-
-    public Role(RoleName name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public RoleName getName() {
-        return name;
-    }
-
-    public void setName(RoleName name) {
-        this.name = name;
-    }
-
 }
