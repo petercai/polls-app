@@ -3,6 +3,7 @@ logging:
     org.hibernate.SQL: DEBUG
     org.apache.http.wire: DEBUG
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 
 spring:
   data:
@@ -11,4 +12,25 @@ spring:
       port: 27017
       database: polling
 
-    
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    env:
+      sensitive: false
+      keys-to-sanitize:
+    configprops:
+      sensitive: false
+      keys-to-sanitize:
+    info:
+      enabled: true
+  info:
+    git:
+      mode: full
+  health:
+    mongo:
+      enabled: true
