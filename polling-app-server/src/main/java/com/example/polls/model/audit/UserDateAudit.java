@@ -1,22 +1,17 @@
 package com.example.polls.model.audit;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 
-@JsonIgnoreProperties(
-        value = {"createdBy", "updatedBy"},
-        allowGetters = true
-)
+
 public abstract class UserDateAudit extends DateAudit {
 
     @CreatedBy
     private Long createdBy;
 
     @LastModifiedBy
-    private Long updatedBy;
+    private Long listModifiedBy;
 
     public Long getCreatedBy() {
         return createdBy;
@@ -26,11 +21,11 @@ public abstract class UserDateAudit extends DateAudit {
         this.createdBy = createdBy;
     }
 
-    public Long getUpdatedBy() {
-        return updatedBy;
+    public Long getListModifiedBy() {
+        return listModifiedBy;
     }
 
-    public void setUpdatedBy(Long updatedBy) {
-        this.updatedBy = updatedBy;
+    public void setListModifiedBy(Long listModifiedBy) {
+        this.listModifiedBy = listModifiedBy;
     }
 }

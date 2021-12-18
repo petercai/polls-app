@@ -42,9 +42,6 @@ public class PollService {
     private VoteRepository voteRepository;
 
     @Autowired
-    SequenceGenerator sequenceGenerator;
-
-    @Autowired
     private UserRepository userRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(PollService.class);
@@ -161,7 +158,6 @@ public class PollService {
 
         poll.setExpirationDateTime(expirationDateTime);
 
-        poll.setId(sequenceGenerator.generate(Poll.SEQUENCE_NAME));
         return pollRepository.save(poll);
     }
 
