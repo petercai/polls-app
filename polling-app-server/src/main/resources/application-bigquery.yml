@@ -1,0 +1,44 @@
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.apache.http.wire: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/polling_app?useSSL=false&useLegacyDatetimeCode=false
+        username: root
+        password: ''
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+                hbm2dll: default-roles.sql
+    jackson:
+        serialization:
+            INDENT_OUTPUT: true
+
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: "*"
+    enabled-by-default: true
+  endpoint:
+    env:
+      sensitive: false
+      keys-to-sanitize:
+    configprops:
+      sensitive: false
+      keys-to-sanitize:
+    info:
+      enabled: true
+  info:
+    git:
+      mode: full
+  health:
+    mongo:
+      enabled: true
