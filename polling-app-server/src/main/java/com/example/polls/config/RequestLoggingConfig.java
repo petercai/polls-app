@@ -9,7 +9,7 @@ public class RequestLoggingConfig {
     @Bean
     public CommonsRequestLoggingFilter loggingFilter() {
         CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
-        filter.setAfterMessagePrefix("Logging - Request: ");
+        filter.setAfterMessagePrefix("After Request: ");
         filter.setIncludeQueryString(true);
         filter.setIncludeHeaders(true);
         filter.setIncludePayload(true);

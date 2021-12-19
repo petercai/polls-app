@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 
 @Component
-public class SequenceEventListener extends AbstractMongoEventListener<IMongoModel> {
+public class MongoPersistenceEventListener extends AbstractMongoEventListener<IMongoModel> {
 
     @Autowired
     SequenceGenerator generator;

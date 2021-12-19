@@ -3,12 +3,12 @@ package com.example.polls.model.audit;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 import java.time.Instant;
 
 
 
-public abstract class DateAudit implements Serializable {
+public abstract class DateAudit /*implements Serializable*/ {
 
     @CreatedDate
     private Instant createDate;

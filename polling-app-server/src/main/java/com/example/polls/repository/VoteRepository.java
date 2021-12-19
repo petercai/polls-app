@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface VoteRepository extends MongoRepository<Vote, Long> {
     //    @Query("SELECT NEW com.example.polls.model.ChoiceVoteCount(v.choice.id, count(v.id)) FROM Vote v WHERE v.poll.id in :pollIds GROUP BY v.choice.id")
-    @Query(value = "{'productDetails.productType': {$in: ?0}}", count = true)
+    @Query(value = "[{$match:{'poll.$id':{$in::#{#pollIds}}}},{$group:{_id:'$choice.$id',count:{$sum:1}}}]")
     List<ChoiceVoteCount> countByPollIdInGroupByChoiceId(@Param("pollIds") List<Long> pollIds);
 
     //    @Query("SELECT NEW com.example.polls.model.ChoiceVoteCount(v.choice.id, count(v.id)) FROM Vote v WHERE v.poll.id = :pollId GROUP BY v.choice.id")

@@ -19,6 +19,7 @@ public class LoggingAspect {
 
     @Around(
             "execution(public * com.example.polls.controller..*(..)) || "
+                    + "execution(public * com.example.polls.repository.VoteRepository.*(..)) || "
                     + "execution(public * com.example.polls.service..*(..)) ")
     public Object log(final ProceedingJoinPoint point) throws Throwable {
         Logger LOGGER = null;
