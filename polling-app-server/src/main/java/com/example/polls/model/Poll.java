@@ -53,4 +53,13 @@ public class Poll extends UserDateAudit implements IMongoModel {
     public String getSequenceName() {
         return SEQUENCE_NAME;
     }
+
+    @Override
+    public String toString() {
+        return "Poll{" +
+                "id=" + id +
+                ", question='" + question + '\'' +
+                ", expirationDateTime=" + expirationDateTime +
+                '}';
+    }
 }
