@@ -16,6 +16,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,15 +35,6 @@ class VoteRepositoryTest {
         log.info("result: " + choiceVoteCounts.toString());
     }
 
-    @Test
-    void countByPollIdGroupByChoiceId() {
-        voteRepository.countByPollIdInGroupByChoiceId2(new Long[]{7L});
-    }
-
-    @Test
-    void countByPollIdGroupByChoiceId3() {
-        voteRepository.countByPollIdInGroupByChoiceId4(Arrays.asList(7L));
-    }
 
     @Test
     void countByUserId() {
