@@ -2,6 +2,7 @@ package com.example.polls.repository;
 
 import com.example.polls.PollsApplication;
 import com.example.polls.model.ChoiceVoteCount;
+import com.example.polls.model.Vote;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,8 +39,19 @@ class VoteRepositoryTest {
 
     @Test
     void countByUserId() {
-        Pageable pageable = PageRequest.of(0, 2, Sort.Direction.DESC, "createdAt");
-        Page<Long> userVotedPollIds = voteRepository.findVotedPollIdsByUserId(1L, pageable);
+        Pageable pageable = PageRequest.of(0,
+                                           2,
+                                           Sort.Direction.DESC,
+                                           "createdAt");
+        Page<Long> userVotedPollIds = voteRepository.findVotedPollIdsByUserId(1L,
+                                                                              pageable);
         log.info(userVotedPollIds.toString());
+    }
+
+    @Test
+    void findByUserIdAndPollId() {
+        List<Vote> votes = voteRepository.findByUserIdAndPollIdIn(2L,
+                                                                  Arrays.asList(7L));
+        log.info(votes.toString());
     }
 }

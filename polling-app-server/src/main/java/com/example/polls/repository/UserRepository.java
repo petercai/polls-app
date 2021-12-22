@@ -18,9 +18,6 @@ public interface UserRepository extends MongoRepository<User, Long> {
 
     List<User> findByIdIn(List<Long> userIds);
 
-    @Query("{_id:'?0'}")
-    User getOne(Long id);
-
     Optional<User> findByUsername(String username);
 
     Boolean existsByUsername(String username);

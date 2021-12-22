@@ -11,7 +11,7 @@ public abstract class UserDateAudit extends DateAudit {
     private Long createdBy;
 
     @LastModifiedBy
-    private Long listModifiedBy;
+    private Long lastModifiedBy;
 
     public Long getCreatedBy() {
         return createdBy;
@@ -21,11 +21,11 @@ public abstract class UserDateAudit extends DateAudit {
         this.createdBy = createdBy;
     }
 
-    public Long getListModifiedBy() {
-        return listModifiedBy;
+    public Long getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
-    public void setListModifiedBy(Long listModifiedBy) {
-        this.listModifiedBy = listModifiedBy;
+    public void setLastModifiedBy(Long lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 }

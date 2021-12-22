@@ -1,5 +1,6 @@
 package com.example.polls.service;
 
+import com.example.polls.exception.AppException;
 import com.example.polls.exception.BadRequestException;
 import com.example.polls.exception.ResourceNotFoundException;
 import com.example.polls.model.*;
@@ -28,6 +29,7 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -270,7 +272,7 @@ public class PollService {
             throw new BadRequestException("Sorry! This Poll has already expired");
         }
 
-        User user = userRepository.getOne(currentUser.getId());
+        Optional<User> user = userRepository.findById(currentUser.getId());
 
         Choice selectedChoice = poll.getChoices().stream()
                 .filter(choice -> choice.getId().equals(voteRequest.getChoiceId()))
@@ -281,7 +283,7 @@ public class PollService {
 
         Vote vote = new Vote();
         vote.setPoll(poll);
-        vote.setUser(user);
+        vote.setUser(user.orElseThrow(()-> new AppException("Cannot find the user")));
         vote.setChoice(selectedChoice);
 
         try {
