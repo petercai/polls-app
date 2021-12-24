@@ -14,9 +14,9 @@ server:
 management:
     endpoints:
         web:
-            base-path: /management
+            base-path: /actuator
             exposure:
-                include: "env,info,configprops,mappings"
+                include: "*"
         enabled-by-default: true
     endpoint:
         env:
@@ -31,10 +31,11 @@ management:
         git:
             mode: full
     health:
-        circuitbreakers:
+        mongo:
             enabled: true
 
 spring:
     jackson:
         serialization:
             WRITE_DATES_AS_TIMESTAMPS: false
+            INDENT_OUTPUT: true
