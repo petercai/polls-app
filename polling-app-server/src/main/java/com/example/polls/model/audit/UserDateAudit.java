@@ -1,10 +1,11 @@
 package com.example.polls.model.audit;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 
 
-
+@Data
 public abstract class UserDateAudit extends DateAudit {
 
     @CreatedBy
@@ -13,19 +14,8 @@ public abstract class UserDateAudit extends DateAudit {
     @LastModifiedBy
     private Long lastModifiedBy;
 
-    public Long getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Long getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(Long lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
+    @Override
+    public boolean isNew() {
+        return createdBy == null;
     }
 }

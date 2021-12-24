@@ -1,14 +1,15 @@
 package com.example.polls.model.audit;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
 
-//import java.io.Serializable;
 import java.time.Instant;
 
 
-
-public abstract class DateAudit /*implements Serializable*/ {
+@Data
+public abstract class DateAudit implements Persistable {
 
     @CreatedDate
     private Instant createDate;
@@ -16,20 +17,8 @@ public abstract class DateAudit /*implements Serializable*/ {
     @LastModifiedDate
     private Instant lastModifiedDate;
 
-    public Instant getCreateDate() {
-        return createDate;
+    @Override
+    public boolean isNew() {
+        return createDate == null;
     }
-
-    public void setCreateDate(Instant createDate) {
-        this.createDate = createDate;
-    }
-
-    public Instant getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Instant lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
 }

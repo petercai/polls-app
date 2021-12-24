@@ -1,6 +1,8 @@
 package com.example.polls.model;
 
 import com.example.polls.model.common.IMongoModel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -14,7 +16,9 @@ import java.util.Objects;
 
 @Document(collection = "choices")
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Choice implements IMongoModel {
     @Transient
     public static final String SEQUENCE_NAME = "choice_sequence";

@@ -2,7 +2,7 @@ logging:
   level:
     org.hibernate.SQL: DEBUG
     org.apache.http.wire: DEBUG
-    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.springframework.data.mongodb: DEBUG
     org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 
 spring:

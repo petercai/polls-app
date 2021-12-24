@@ -4,8 +4,7 @@ import com.example.polls.model.audit.UserDateAudit;
 import com.example.polls.model.common.CascadeSave;
 import com.example.polls.model.common.IMongoModel;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
+import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -41,7 +40,6 @@ public class Poll extends UserDateAudit implements IMongoModel {
     public void addChoice(Choice choice) {
         choices.add(choice);
         choice.setPoll(this);
-        choice.setPoll(this);
     }
 
     public void removeChoice(Choice choice) {
@@ -62,4 +60,7 @@ public class Poll extends UserDateAudit implements IMongoModel {
                 ", expirationDateTime=" + expirationDateTime +
                 '}';
     }
+
+
+
 }
